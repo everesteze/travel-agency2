@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ever Safety Fly - Hotels</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { theme: { extend: { colors: { baBlue: '#002060', baRed: '#EB2227', ekGold: '#D4AF37' } } } }
+    </script>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen antialiased">
+
+    <!-- STICKY HEADER -->
+    <header class="sticky top-0 z-50 bg-baBlue text-white shadow-xl border-b-4 border-ekGold">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between relative">
+            <div class="flex items-center space-x-2 z-10">
+                <svg class="w-8 h-8 text-baRed transform -rotate-45" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
+                <span class="text-xs tracking-widest text-gray-300 uppercase font-bold hidden sm:block">ESF Luxury</span>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2 text-center w-full">
+                <h1 class="text-xl md:text-3xl font-extrabold tracking-wider text-ekGold uppercase">Ever Safety Fly</h1>
+            </div>
+            <nav class="z-10">
+                <ul class="flex space-x-4 md:space-x-6 items-center text-xs md:text-sm uppercase font-semibold">
+                    <li><a href="index.html" class="hover:text-ekGold transition">Home</a></li>
+                    <li><a href="flights.html" class="hover:text-ekGold transition">Flights</a></li>
+                    <li><a href="hotels.html" class="text-ekGold border-b-2 border-ekGold pb-1">Hotels</a></li>
+                    <li><a href="destinations.html" class="hover:text-ekGold transition">Destinations</a></li>
+                    <li><a href="contact.html" class="hover:text-ekGold transition">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow">
+        <section class="bg-gradient-to-r from-baBlue via-slate-900 to-baBlue text-center py-12 text-white border-b border-ekGold px-4">
+            <p class="text-ekGold uppercase tracking-[0.2em] font-bold text-xs mb-2">Partnered Seven-Star Alliances</p>
+            <h2 class="text-2xl md:text-4xl font-black">LUXURY STRATEGIC HOSPITALITY STAYS</h2>
+        </section>
+
+        <!-- 3 columns x 3 rows Grid -->
+        <section class="max-w-7xl mx-auto px-4 py-12">
+            <h3 class="text-xl font-bold text-baBlue mb-6 uppercase tracking-wider text-center">Premium Accommodation Directory</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[220px]">
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">Dubai</span><p class="text-white text-xs font-semibold">The Burj Al Arab Suites</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">London</span><p class="text-white text-xs font-semibold">The Savoy Sovereign Room</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">Maldives</span><p class="text-white text-xs font-semibold">Overwater Lagoon Villas</p></div></div>
+
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">Paris</span><p class="text-white text-xs font-semibold">The Ritz Royal Penthouse</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Sovereign Skyline Lounge</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Bespoke In-Room Dining</p></div></div>
+
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Ocean Atoll Infinity Pool</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ca1ad?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Mayfair Premium Suites</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Elite Presidential Palace</p></div></div>
+            </div>
+        </section>
+    </main>
+
+    <!-- STICKY FOOTER -->
+    <footer class="sticky bottom-0 z-40 bg-baBlue text-gray-300 text-xs py-3 border-t-2 border-ekGold">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center text-center">
+            <p>&copy; 2026 <span class="text-ekGold font-bold">Ever Safety Fly</span>. Hospitality Management Framework.</p>
+            <div class="space-x-4"><a href="#" class="hover:text-ekGold">Privacy</a><a href="#" class="hover:text-ekGold">Terms</a></div>
+        </div>
+    </footer>
+</body>
+</html>
