@@ -13,6 +13,9 @@
 
     <!-- STICKY HEADER -->
     <header class="sticky top-0 z-50 bg-baBlue text-white shadow-xl border-b-4 border-ekGold">
+        <!-- HAMBURGER TOGGLE (checkbox hack, no JS) - must be sibling-before the mobile nav below -->
+        <input type="checkbox" id="nav-toggle" class="hidden peer">
+
         <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between relative">
             <div class="flex items-center space-x-2 z-10">
                 <svg class="w-8 h-8 text-baRed transform -rotate-45" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
@@ -21,7 +24,9 @@
             <div class="absolute left-1/2 transform -translate-x-1/2 text-center w-full">
                 <h1 class="text-xl md:text-3xl font-extrabold tracking-wider text-ekGold uppercase">Ever Safety Fly</h1>
             </div>
-            <nav class="z-10">
+
+            <!-- DESKTOP NAV -->
+            <nav class="z-10 hidden md:block">
                 <ul class="flex space-x-4 md:space-x-6 items-center text-xs md:text-sm uppercase font-semibold">
                     <li><a href="index.html" class="hover:text-ekGold transition">Home</a></li>
                     <li><a href="flights.html" class="hover:text-ekGold transition">Flights</a></li>
@@ -30,14 +35,53 @@
                     <li><a href="contact.html" class="hover:text-ekGold transition">Contact</a></li>
                 </ul>
             </nav>
+
+            <!-- HAMBURGER BUTTON (mobile only, top-right) -->
+            <label for="nav-toggle" class="md:hidden z-10 cursor-pointer p-2 -mr-2">
+                <svg class="w-7 h-7 peer-checked:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg class="w-7 h-7 hidden peer-checked:block text-ekGold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </label>
         </div>
+
+        <!-- MOBILE DROPDOWN PANEL -->
+        <nav class="md:hidden max-h-0 peer-checked:max-h-96 overflow-hidden transition-all duration-300 ease-in-out bg-baBlue border-t border-ekGold/40">
+            <ul class="flex flex-col text-sm uppercase font-semibold">
+                <li><a href="index.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Home</a></li>
+                <li><a href="flights.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Flights</a></li>
+                <li><a href="hotels.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Hotels</a></li>
+                <li><a href="destinations.html" class="block px-6 py-3 bg-white/10 text-ekGold">Destinations</a></li>
+                <li><a href="contact.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
-        <section class="bg-gradient-to-r from-baBlue via-slate-900 to-baBlue text-center py-12 text-white border-b border-ekGold px-4">
-            <p class="text-ekGold uppercase tracking-[0.2em] font-bold text-xs mb-2">Curated World Exploration</p>
-            <h2 class="text-2xl md:text-4xl font-black">GLOBAL CURATED WONDERS & MAPS</h2>
+
+        <!-- HERO WITH BACKGROUND IMAGE -->
+        <section class="relative text-center py-16 md:py-20 text-white border-b border-ekGold px-4 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=1600&q=80" class="absolute inset-0 w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-r from-baBlue/95 via-slate-900/90 to-baBlue/95"></div>
+            <div class="relative z-10">
+                <p class="text-ekGold uppercase tracking-[0.2em] font-bold text-xs mb-2">Curated World Exploration</p>
+                <h2 class="text-2xl md:text-4xl font-black">GLOBAL CURATED WONDERS & MAPS</h2>
+                <p class="text-gray-300 text-sm mt-3 max-w-2xl mx-auto">Nine handpicked cities across six continents, each one mapped to a dedicated Ever Safety Fly route, hotel partner, and concierge desk.</p>
+            </div>
+        </section>
+
+        <!-- CONTINENT FILTER BAR -->
+        <section class="max-w-7xl mx-auto px-4 pt-8">
+            <div class="flex flex-wrap justify-center gap-3 text-xs uppercase font-bold tracking-wider">
+                <span class="px-4 py-2 rounded-full bg-baBlue text-ekGold border border-ekGold">Africa-Nigeria</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Middle East</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Europe</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Asia-Pacific</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Americas</span>
+            </div>
         </section>
 
         <!-- 3 columns x 3 rows Grid -->
@@ -45,16 +89,16 @@
             <h3 class="text-xl font-bold text-baBlue mb-6 uppercase tracking-wider text-center">Continental Route Map</h3>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[220px]">
                 <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Dubai, UAE</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ca1ad?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">London, UK</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1540959733332-eab4deceeaf7?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Tokyo, Japan</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="../image/London.jpg" alt="#"> class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">London, UK</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="../image/Tokyo.jpg" alt="#"> class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Tokyo, Japan</p></div></div>
 
                 <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Male, Maldives</p></div></div>
                 <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Paris, France</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1546412414-e18852615926?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Abu Dhabi, UAE</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="../image/Dubai.jpg" alt="#"> class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Abu Dhabi, UAE</p></div></div>
 
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">New York, USA</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="../image/singapour.jpg" alt=""> class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">New York, USA</p></div></div>
                 <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1552733407-5d5c46c3bb3b?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Singapore Hub</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Sydney, Australia</p></div></div>
+                <div class="relative overflow-hidden rounded-xl group border border-gray-200"> <img src="../image/Abuja.jpg" alt="#"> class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Abuja, Nigeria</p></div></div>
             </div>
         </section>
     </main>

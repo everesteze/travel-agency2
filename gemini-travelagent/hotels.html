@@ -13,6 +13,9 @@
 
     <!-- STICKY HEADER -->
     <header class="sticky top-0 z-50 bg-baBlue text-white shadow-xl border-b-4 border-ekGold">
+        <!-- HAMBURGER TOGGLE (checkbox hack, no JS) - must be first child of header -->
+        <input type="checkbox" id="nav-toggle" class="hidden peer">
+
         <div class="max-w-7xl mx-auto px-4 py-5 flex items-center justify-between relative">
             <div class="flex items-center space-x-2 z-10">
                 <svg class="w-8 h-8 text-baRed transform -rotate-45" fill="currentColor" viewBox="0 0 24 24"><path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>
@@ -21,7 +24,9 @@
             <div class="absolute left-1/2 transform -translate-x-1/2 text-center w-full">
                 <h1 class="text-xl md:text-3xl font-extrabold tracking-wider text-ekGold uppercase">Ever Safety Fly</h1>
             </div>
-            <nav class="z-10">
+
+            <!-- DESKTOP NAV -->
+            <nav class="z-10 hidden md:block">
                 <ul class="flex space-x-4 md:space-x-6 items-center text-xs md:text-sm uppercase font-semibold">
                     <li><a href="index.html" class="hover:text-ekGold transition">Home</a></li>
                     <li><a href="flights.html" class="hover:text-ekGold transition">Flights</a></li>
@@ -30,33 +35,308 @@
                     <li><a href="contact.html" class="hover:text-ekGold transition">Contact</a></li>
                 </ul>
             </nav>
+
+            <!-- HAMBURGER BUTTON (mobile only, top-right) -->
+            <label for="nav-toggle" class="md:hidden z-10 cursor-pointer p-2 -mr-2">
+                <svg class="w-7 h-7 peer-checked:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                </svg>
+                <svg class="w-7 h-7 hidden peer-checked:block text-ekGold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </label>
         </div>
+
+        <!-- MOBILE DROPDOWN PANEL -->
+        <nav class="md:hidden max-h-0 peer-checked:max-h-96 overflow-hidden transition-all duration-300 ease-in-out bg-baBlue border-t border-ekGold/40">
+            <ul class="flex flex-col text-sm uppercase font-semibold">
+                <li><a href="index.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Home</a></li>
+                <li><a href="flights.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Flights</a></li>
+                <li><a href="hotels.html" class="block px-6 py-3 bg-white/10 text-ekGold">Hotels</a></li>
+                <li><a href="destinations.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Destinations</a></li>
+                <li><a href="contact.html" class="block px-6 py-3 hover:bg-white/10 hover:text-ekGold transition">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
+
+        <!-- PAGE HERO -->
         <section class="bg-gradient-to-r from-baBlue via-slate-900 to-baBlue text-center py-12 text-white border-b border-ekGold px-4">
             <p class="text-ekGold uppercase tracking-[0.2em] font-bold text-xs mb-2">Partnered Seven-Star Alliances</p>
             <h2 class="text-2xl md:text-4xl font-black">LUXURY STRATEGIC HOSPITALITY STAYS</h2>
+            <p class="text-gray-300 text-sm max-w-2xl mx-auto mt-3">From overwater villas to boutique city escapes — every stay handpicked and rate-matched by our travel desk.</p>
+        </section>
+
+        <!-- SEARCH / FILTER BAR -->
+        <section class="max-w-5xl mx-auto px-4 -mt-7 relative z-10">
+            <form class="bg-white rounded-xl shadow-2xl border border-gray-200 p-4 md:p-5 grid grid-cols-1 md:grid-cols-5 gap-3 items-end">
+                <div class="flex flex-col md:col-span-2">
+                    <label class="text-[10px] uppercase font-bold text-baBlue tracking-wider mb-1">Destination</label>
+                    <input type="text" placeholder="Where are you going?" class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ekGold">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-[10px] uppercase font-bold text-baBlue tracking-wider mb-1">Check-in</label>
+                    <input type="date" class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ekGold">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-[10px] uppercase font-bold text-baBlue tracking-wider mb-1">Check-out</label>
+                    <input type="date" class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ekGold">
+                </div>
+                <div class="flex flex-col">
+                    <label class="text-[10px] uppercase font-bold text-baBlue tracking-wider mb-1">Guests</label>
+                    <select class="border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ekGold">
+                        <option>1 Guest</option>
+                        <option selected>2 Guests</option>
+                        <option>3 Guests</option>
+                        <option>4+ Guests</option>
+                    </select>
+                </div>
+                <button type="submit" class="md:col-span-5 bg-baRed hover:bg-red-700 text-white font-bold uppercase text-sm tracking-wider py-3 rounded-md transition mt-1">
+                    Search Stays
+                </button>
+            </form>
+        </section>
+
+        <!-- TIER FILTER PILLS -->
+        <section class="max-w-7xl mx-auto px-4 pt-10 pb-2">
+            <div class="flex flex-wrap justify-center gap-3 text-xs uppercase font-bold tracking-wider">
+                <span class="px-4 py-2 rounded-full bg-baBlue text-ekGold border border-ekGold">All Stays</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Luxury</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Mid-Range</span>
+                <span class="px-4 py-2 rounded-full bg-white text-baBlue border border-gray-300">Affordable</span>
+            </div>
         </section>
 
         <!-- 3 columns x 3 rows Grid -->
-        <section class="max-w-7xl mx-auto px-4 py-12">
-            <h3 class="text-xl font-bold text-baBlue mb-6 uppercase tracking-wider text-center">Premium Accommodation Directory</h3>
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 auto-rows-[220px]">
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">Dubai</span><p class="text-white text-xs font-semibold">The Burj Al Arab Suites</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">London</span><p class="text-white text-xs font-semibold">The Savoy Sovereign Room</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">Maldives</span><p class="text-white text-xs font-semibold">Overwater Lagoon Villas</p></div></div>
+        <section class="max-w-7xl mx-auto px-4 py-10">
+            <h3 class="text-xl font-bold text-baBlue mb-8 uppercase tracking-wider text-center">Premium Accommodation Directory</h3>
 
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/60 flex flex-col justify-end p-3"><span class="text-ekGold text-[10px] uppercase font-bold">Paris</span><p class="text-white text-xs font-semibold">The Ritz Royal Penthouse</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Sovereign Skyline Lounge</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Bespoke In-Room Dining</p></div></div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
 
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Ocean Atoll Infinity Pool</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1513635269975-59663e0ca1ad?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Mayfair Premium Suites</p></div></div>
-                <div class="relative overflow-hidden rounded-xl group border border-gray-200"><img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-black/40 flex items-end p-2"><p class="text-white text-xs font-bold">Elite Presidential Palace</p></div></div>
+                <!-- LUXURY 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-ekGold text-baBlue text-[10px] font-bold uppercase px-2 py-1 rounded">Luxury</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$1,450<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">Dubai, UAE</span>
+                            <p class="text-white text-sm font-semibold">The Burj Al Arab Suites</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★★★</div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">9.8 <span class="text-gray-400 font-normal">Exceptional</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">All-suite icon on its own island, with private butler service and chauffeured Rolls-Royce transfers.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- LUXURY 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-ekGold text-baBlue text-[10px] font-bold uppercase px-2 py-1 rounded">Luxury</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$980<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">London, UK</span>
+                            <p class="text-white text-sm font-semibold">The Savoy Sovereign Room</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★★★</div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">9.6 <span class="text-gray-400 font-normal">Exceptional</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Riverside heritage grandeur on the Strand, with afternoon tea and a Thames-view terrace.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- LUXURY 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-ekGold text-baBlue text-[10px] font-bold uppercase px-2 py-1 rounded">Luxury</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$1,150<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">Maldives</span>
+                            <p class="text-white text-sm font-semibold">Overwater Lagoon Villas</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★★★</div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">9.7 <span class="text-gray-400 font-normal">Exceptional</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Private overwater villas with glass-floor lagoon views and personal snorkel deck access.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="../image/1.jpg" alt="#"> class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-baBlue text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Mid-Range</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$420<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">Paris, France</span>
+                            <p class="text-white text-sm font-semibold">Sovereign Skyline Lounge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★★<span class="text-gray-300">★</span></div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">8.9 <span class="text-gray-400 font-normal">Very Good</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Rooftop lounge with Eiffel Tower views, plus a curated French breakfast included.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-baBlue text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Mid-Range</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$365<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">Rome, Italy</span>
+                            <p class="text-white text-sm font-semibold">Bespoke In-Room Dining Suites</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★★<span class="text-gray-300">★</span></div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">8.7 <span class="text-gray-400 font-normal">Very Good</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Private in-room chef dining service, steps away from the historic city centre.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- MID-RANGE 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="../image/2.jpg" alt="#"> class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-baBlue text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Mid-Range</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$310<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">High Hill Hotel Abuja, Nigeria</span>
+                            <p class="text-white text-sm font-semibold">Ocean Atoll Infinity Resort</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★★<span class="text-gray-300">★</span></div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">8.8 <span class="text-gray-400 font-normal">Very Good</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Cliffside infinity pool resort with sunset views over the Indian Ocean.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- AFFORDABLE 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-green-700 text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Affordable</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$129<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">Bangkok, Thailand</span>
+                            <p class="text-white text-sm font-semibold">Riverside Traveller Lodge</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★<span class="text-gray-300">★★</span></div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">8.0 <span class="text-gray-400 font-normal">Very Good</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Cliffside infinity pool, jungle views, and free airport shuttle — budget-friendly without the budget feel.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- AFFORDABLE 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="../image/3 copy.jpg" alt="#">  " class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-green-700 text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Affordable</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$98<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">London, UK</span>
+                            <p class="text-white text-sm font-semibold">Mayfair Comfort Suites</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★<span class="text-gray-300">★★</span></div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">7.8 <span class="text-gray-400 font-normal">Very Good</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Smart, compact rooms a short walk from Mayfair's shopping district, with complimentary breakfast.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
+                <!-- AFFORDABLE 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md border border-gray-200 group flex flex-col">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="../image/4.jpg" alt="#">  " class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <span class="absolute top-3 left-3 bg-green-700 text-white text-[10px] font-bold uppercase px-2 py-1 rounded">Affordable</span>
+                        <span class="absolute top-3 right-3 bg-baBlue/90 text-ekGold text-xs font-bold px-3 py-1.5 rounded-full shadow">$76<span class="text-gray-300 font-normal">/night</span></span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent flex flex-col justify-end p-3">
+                            <span class="text-ekGold text-[10px] uppercase font-bold">Lisbon, Portugal</span>
+                            <p class="text-white text-sm font-semibold">Elite Palace Boutique Inn</p>
+                        </div>
+                    </div>
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex text-ekGold text-sm">★★★<span class="text-gray-300">★★</span></div>
+                            <span class="text-xs font-bold text-baBlue bg-gray-100 px-2 py-0.5 rounded">7.6 <span class="text-gray-400 font-normal">Good</span></span>
+                        </div>
+                        <p class="text-xs text-gray-500 mb-4">Charming family-run boutique inn in the Alfama district, known for rooftop views and warm hospitality.</p>
+                        <button class="mt-auto bg-baRed hover:bg-red-700 text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-md transition">Book Now</button>
+                    </div>
+                </div>
+
             </div>
         </section>
+
+        <!-- WHY BOOK WITH US -->
+        <section class="bg-baBlue text-white py-14 px-4 border-t border-ekGold">
+            <div class="max-w-6xl mx-auto text-center">
+                <p class="text-ekGold uppercase tracking-[0.2em] font-bold text-xs mb-2">Why Book With Us</p>
+                <h3 class="text-2xl md:text-3xl font-black mb-10">The Ever Safety Fly Hospitality Promise</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-sm">
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 text-ekGold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="font-bold uppercase tracking-wide mb-1">Best Rate Guarantee</p>
+                        <p class="text-gray-300 text-xs">Find it cheaper elsewhere within 24 hours and we'll match it, plus 10% off.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 text-ekGold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                        <p class="font-bold uppercase tracking-wide mb-1">Free Cancellation</p>
+                        <p class="text-gray-300 text-xs">Plans change. Most stays can be cancelled free up to 48 hours before arrival.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 text-ekGold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+                        <p class="font-bold uppercase tracking-wide mb-1">24/7 Concierge</p>
+                        <p class="text-gray-300 text-xs">A dedicated travel desk on call around the clock for every booking.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg class="w-10 h-10 text-ekGold mb-3" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 18.75h-9m9 0a3 3 0 013 3h-15a3 3 0 013-3m9 0v-3.375c0-.621-.503-1.125-1.125-1.125h-.871M7.5 18.75v-3.375c0-.621.504-1.125 1.125-1.125h.872m5.007 0H9.497m5.007 0a7.454 7.454 0 01-.982-3.172M9.497 14.25a7.454 7.454 0 00.981-3.172M5.25 4.236c-.982.143-1.954.317-2.916.52A6.003 6.003 0 007.73 9.728M5.25 4.236V4.5c0 2.108.966 3.99 2.48 5.228M5.25 4.236V2.721C7.456 2.41 9.71 2.25 12 2.25c2.291 0 4.545.16 6.75.47v1.516M7.73 9.728a6.726 6.726 0 002.748 1.35m8.272-6.842V4.5c0 2.108-.966 3.99-2.48 5.228m2.48-5.492a46.32 46.32 0 012.916.52 6.003 6.003 0 01-5.395 4.972m0 0a6.726 6.726 0 01-2.749 1.35m0 0a6.772 6.772 0 01-3.044 0"/></svg>
+                        <p class="font-bold uppercase tracking-wide mb-1">Verified 5-Star Vetting</p>
+                        <p class="text-gray-300 text-xs">Every property personally inspected by our hospitality partners before listing.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- STICKY FOOTER -->
